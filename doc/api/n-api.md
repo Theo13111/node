@@ -346,7 +346,7 @@ napi_value create_addon(napi_env env);
 // addon.c
 #include "addon.h"
 
-#define NAPI_CALL(env, call)                                      \
+#define NODE_API_CALL(env, call)                                  \
   do {                                                            \
     napi_status status = (call);                                  \
     if (status != napi_ok) {                                      \
@@ -355,13 +355,14 @@ napi_value create_addon(napi_env env);
       const char* err_message = error_info->error_message;        \
       bool is_pending;                                            \
       napi_is_exception_pending((env), &is_pending);              \
+      /* If an exception is already pending, don't rethrow it */  \
       if (!is_pending) {                                          \
         const char* message = (err_message == NULL)               \
             ? "empty error message"                               \
             : err_message;                                        \
         napi_throw_error((env), NULL, message);                   \
-        return NULL;                                              \
       }                                                           \
+      return NULL;                                                \
     }                                                             \
   } while(0)
 
@@ -373,20 +374,20 @@ DoSomethingUseful(napi_env env, napi_callback_info info) {
 
 napi_value create_addon(napi_env env) {
   napi_value result;
-  NAPI_CALL(env, napi_create_object(env, &result));
+  NODE_API_CALL(env, napi_create_object(env, &result));
 
   napi_value exported_function;
-  NAPI_CALL(env, napi_create_function(env,
-                                      "doSomethingUseful",
-                                      NAPI_AUTO_LENGTH,
-                                      DoSomethingUseful,
-                                      NULL,
-                                      &exported_function));
+  NODE_API_CALL(env, napi_create_function(env,
+                                          "doSomethingUseful",
+                                          NAPI_AUTO_LENGTH,
+                                          DoSomethingUseful,
+                                          NULL,
+                                          &exported_function));
 
-  NAPI_CALL(env, napi_set_named_property(env,
-                                         result,
-                                         "doSomethingUseful",
-                                         exported_function));
+  NODE_API_CALL(env, napi_set_named_property(env,
+                                             result,
+                                             "doSomethingUseful",
+                                             exported_function));
 
   return result;
 }
@@ -2842,7 +2843,9 @@ The JavaScript `string` type is described in
 #### `node_api_create_external_string_latin1`
 
 <!-- YAML
-added: v20.4.0
+added:
+ - v20.4.0
+ - v18.18.0
 -->
 
 > Stability: 1 - Experimental
@@ -2920,7 +2923,9 @@ The JavaScript `string` type is described in
 #### `node_api_create_external_string_utf16`
 
 <!-- YAML
-added: v20.4.0
+added:
+ - v20.4.0
+ - v18.18.0
 -->
 
 > Stability: 1 - Experimental

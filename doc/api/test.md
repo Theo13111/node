@@ -632,6 +632,9 @@ The following built-reporters are supported:
   where each passing test is represented by a `.`,
   and each failing test is represented by a `X`.
 
+* `junit`
+  The junit reporter outputs test results in a jUnit XML format
+
 When `stdout` is a [TTY][], the `spec` reporter is used by default.
 Otherwise, the `tap` reporter is used by default.
 
@@ -643,11 +646,11 @@ to the test runner's output is required, use the events emitted by the
 The reporters are available via the `node:test/reporters` module:
 
 ```mjs
-import { tap, spec, dot } from 'node:test/reporters';
+import { tap, spec, dot, junit } from 'node:test/reporters';
 ```
 
 ```cjs
-const { tap, spec, dot } = require('node:test/reporters');
+const { tap, spec, dot, junit } = require('node:test/reporters');
 ```
 
 ### Custom reporters
@@ -908,7 +911,9 @@ changes:
 
 ```mjs
 import { tap } from 'node:test/reporters';
+import { run } from 'node:test';
 import process from 'node:process';
+import path from 'node:path';
 
 run({ files: [path.resolve('./tests/test.js')] })
   .compose(tap)
@@ -917,6 +922,8 @@ run({ files: [path.resolve('./tests/test.js')] })
 
 ```cjs
 const { tap } = require('node:test/reporters');
+const { run } = require('node:test');
+const path = require('node:path');
 
 run({ files: [path.resolve('./tests/test.js')] })
   .compose(tap)
@@ -1579,9 +1586,10 @@ added:
 Enables timer mocking for the specified timers.
 
 * `timers` {Array} An optional array containing the timers to mock.
-  The currently supported timer values are `'setInterval'` and `'setTimeout'`.
-  If no array is provided, all timers (`'setInterval'`, `'clearInterval'`, `'setTimeout'`,
-  and `'clearTimeout'`) will be mocked by default.
+  The currently supported timer values are `'setInterval'`, `'setTimeout'`,
+  and `'setImmediate'`.  If no value is provided, all timers (`'setInterval'`,
+  `'clearInterval'`, `'setTimeout'`, `'clearTimeout'`, `'setImmediate'`,
+  and `'clearImmediate'`) will be mocked by default.
 
 **Note:** When you enable mocking for a specific timer, its associated
 clear function will also be implicitly mocked.
@@ -1593,7 +1601,7 @@ import { mock } from 'node:test';
 mock.timers.enable(['setInterval']);
 ```
 
-```js
+```cjs
 const { mock } = require('node:test');
 mock.timers.enable(['setInterval']);
 ```
@@ -1630,7 +1638,7 @@ import { mock } from 'node:test';
 mock.timers.reset();
 ```
 
-```js
+```cjs
 const { mock } = require('node:test');
 mock.timers.reset();
 ```
@@ -1679,7 +1687,7 @@ test('mocks setTimeout to be executed synchronously without having to actually w
 });
 ```
 
-```js
+```cjs
 const assert = require('node:assert');
 const { test } = require('node:test');
 
@@ -1718,7 +1726,7 @@ test('mocks setTimeout to be executed synchronously without having to actually w
 });
 ```
 
-```js
+```cjs
 const assert = require('node:assert');
 const { test } = require('node:test');
 
@@ -1762,7 +1770,7 @@ test('mocks setTimeout to be executed synchronously without having to actually w
 });
 ```
 
-```js
+```cjs
 const assert = require('node:assert');
 const { test } = require('node:test');
 
@@ -1819,7 +1827,7 @@ test('mocks setTimeout to be executed synchronously without having to actually w
 });
 ```
 
-```js
+```cjs
 const assert = require('node:assert');
 const { test } = require('node:test');
 const nodeTimers = require('node:timers');
@@ -1881,7 +1889,7 @@ test('should tick five times testing a real use case', async (context) => {
 });
 ```
 
-```js
+```cjs
 const assert = require('node:assert');
 const { test } = require('node:test');
 const nodeTimersPromises = require('node:timers/promises');
@@ -1947,7 +1955,7 @@ test('runAll functions following the given order', (context) => {
 });
 ```
 
-```js
+```cjs
 const assert = require('node:assert');
 const { test } = require('node:test');
 
@@ -2011,8 +2019,18 @@ object, streaming a series of events representing the execution of the tests.
       * `coveredLinePercent` {number} The percentage of lines covered.
       * `coveredBranchPercent` {number} The percentage of branches covered.
       * `coveredFunctionPercent` {number} The percentage of functions covered.
-      * `uncoveredLineNumbers` {Array} An array of integers representing line
-        numbers that are uncovered.
+      * `functions` {Array} An array of functions representing function
+        coverage.
+        * `name` {string} The name of the function.
+        * `line` {number} The line number where the function is defined.
+        * `count` {number} The number of times the function was called.
+      * `branches` {Array} An array of branches representing branch coverage.
+        * `line` {number} The line number where the branch is defined.
+        * `count` {number} The number of times the branch was taken.
+      * `lines` {Array} An array of lines representing line
+        numbers and the number of times they were covered.
+        * `line` {number} The line number.
+        * `count` {number} The number of times the line was covered.
     * `totals` {Object} An object containing a summary of coverage for all
       files.
       * `totalLineCount` {number} The total number of lines.

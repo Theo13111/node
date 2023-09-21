@@ -1907,7 +1907,9 @@ has less then 64 KiB of data because no `highWaterMark` option is provided to
 ##### `readable[Symbol.asyncDispose]()`
 
 <!-- YAML
-added: v20.4.0
+added:
+ - v20.4.0
+ - v18.18.0
 -->
 
 > Stability: 1 - Experimental
@@ -2012,6 +2014,10 @@ showBoth();
 added:
   - v17.4.0
   - v16.14.0
+changes:
+  - version: v20.7.0
+    pr-url: https://github.com/nodejs/node/pull/49249
+    description: added `highWaterMark` in options.
 -->
 
 > Stability: 1 - Experimental
@@ -2025,6 +2031,8 @@ added:
 * `options` {Object}
   * `concurrency` {number} the maximum concurrent invocation of `fn` to call
     on the stream at once. **Default:** `1`.
+  * `highWaterMark` {number} how many items to buffer while waiting for user
+    consumption of the mapped items. **Default:** `concurrency * 2 - 1`.
   * `signal` {AbortSignal} allows destroying the stream if the signal is
     aborted.
 * Returns: {Readable} a stream mapped with the function `fn`.
@@ -2059,6 +2067,10 @@ for await (const result of dnsResults) {
 added:
   - v17.4.0
   - v16.14.0
+changes:
+  - version: v20.7.0
+    pr-url: https://github.com/nodejs/node/pull/49249
+    description: added `highWaterMark` in options.
 -->
 
 > Stability: 1 - Experimental
@@ -2071,6 +2083,8 @@ added:
 * `options` {Object}
   * `concurrency` {number} the maximum concurrent invocation of `fn` to call
     on the stream at once. **Default:** `1`.
+  * `highWaterMark` {number} how many items to buffer while waiting for user
+    consumption of the filtered items. **Default:** `concurrency * 2 - 1`.
   * `signal` {AbortSignal} allows destroying the stream if the signal is
     aborted.
 * Returns: {Readable} a stream filtered with the predicate `fn`.

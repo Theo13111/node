@@ -324,11 +324,19 @@ const buffer = readFileSync(new URL('./data.proto', import.meta.url));
 
 ### `import.meta.resolve(specifier)`
 
-<!--
+<!-- YAML
 added:
   - v13.9.0
   - v12.16.2
 changes:
+  - version: v20.6.0
+    pr-url: https://github.com/nodejs/node/pull/49028
+    description: Unflag `import.meta.resolve``, with `parentURL` parameter still
+                 flagged.
+  - version: v20.6.0
+    pr-url: https://github.com/nodejs/node/pull/49038
+    description: This API no longer throws when targeting `file:` URLs that do
+                 not map to an existing file on the local FS.
   - version: v20.0.0
     pr-url: https://github.com/nodejs/node/pull/44710
     description: This API now returns a string synchronously instead of a Promise.
@@ -337,18 +345,13 @@ changes:
       - v14.18.0
     pr-url: https://github.com/nodejs/node/pull/38587
     description: Add support for WHATWG `URL` object to `parentURL` parameter.
-  - version:
-      - REPLACEME
-    pr-url: https://github.com/nodejs/node/pull/49028
-    description: Unflag import.meta.resolve, with `parentURL` parameter still
-                 flagged.
 -->
 
 > Stability: 1.2 - Release candidate
 
 * `specifier` {string} The module specifier to resolve relative to the
   current module.
-* Returns: {string} The absolute (`file:`) URL string for the resolved module.
+* Returns: {string} The absolute URL string that the specifier would resolve to.
 
 [`import.meta.resolve`][] is a module-relative resolution function scoped to
 each module, returning the URL string.
@@ -356,28 +359,27 @@ each module, returning the URL string.
 ```js
 const dependencyAsset = import.meta.resolve('component-lib/asset.css');
 // file:///app/node_modules/component-lib/asset.css
+import.meta.resolve('./dep.js');
+// file:///app/dep.js
 ```
 
 All features of the Node.js module resolution are supported. Dependency
 resolutions are subject to the permitted exports resolutions within the package.
 
-```js
-import.meta.resolve('./dep', import.meta.url);
-// file:///app/dep
-```
+**Caveats**:
 
-> **Caveat** This can result in synchronous file-system operations, which
-> can impact performance similarly to `require.resolve`.
+* This can result in synchronous file-system operations, which
+  can impact performance similarly to `require.resolve`.
+* This feature is not available within custom loaders (it would
+  create a deadlock).
 
-Previously, Node.js implemented an asynchronous resolver which also permitted
-a second contextual argument. The implementation has since been updated to be
-synchronous, with the second contextual `parent` argument still accessible
-behind the `--experimental-import-meta-resolve` flag:
+**Non-standard API**:
+
+When using the `--experimental-import-meta-resolve` flag, that function accepts
+a second argument:
 
 * `parent` {string|URL} An optional absolute parent module URL to resolve from.
-
-> **Caveat** This feature is not available within module customization hooks (it
-> would create a deadlock).
+  **Default:** `import.meta.url`
 
 ## Interoperability with CommonJS
 
@@ -1070,7 +1072,7 @@ resolution for ESM specifiers is [commonjs-extension-resolution-loader][].
 [`process.dlopen`]: process.md#processdlopenmodule-filename-flags
 [cjs-module-lexer]: https://github.com/nodejs/cjs-module-lexer/tree/1.2.2
 [commonjs-extension-resolution-loader]: https://github.com/nodejs/loaders-test/tree/main/commonjs-extension-resolution-loader
-[custom https loader]: module.md#https-loader
+[custom https loader]: module.md#import-from-https
 [import.meta.resolve]: #importmetaresolvespecifier
 [percent-encoded]: url.md#percent-encoding-in-urls
 [special scheme]: https://url.spec.whatwg.org/#special-scheme
