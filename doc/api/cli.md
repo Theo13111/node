@@ -587,6 +587,36 @@ On Windows, using `cmd.exe` a single quote will not work correctly because it
 only recognizes double `"` for quoting. In Powershell or Git bash, both `'`
 and `"` are usable.
 
+### `--experimental-default-type=type`
+
+<!-- YAML
+added:
+  - REPLACEME
+-->
+
+> Stability: 1.0 - Early development
+
+Define which module system, `module` or `commonjs`, to use for the following:
+
+* String input provided via `--eval` or STDIN, if `--input-type` is unspecified.
+
+* Files ending in `.js` or with no extension, if there is no `package.json` file
+  present in the same folder or any parent folder.
+
+* Files ending in `.js` or with no extension, if the nearest parent
+  `package.json` field lacks a `"type"` field; unless the `package.json` folder
+  or any parent folder is inside a `node_modules` folder.
+
+In other words, `--experimental-default-type=module` flips all the places where
+Node.js currently defaults to CommonJS to instead default to ECMAScript modules,
+with the exception of folders and subfolders below `node_modules`, for backward
+compatibility.
+
+Under `--experimental-default-type=module` and `--experimental-wasm-modules`,
+files with no extension will be treated as WebAssembly if they begin with the
+WebAssembly magic number (`\0asm`); otherwise they will be treated as ES module
+JavaScript.
+
 ### `--experimental-import-meta-resolve`
 
 <!-- YAML
@@ -737,6 +767,14 @@ added: v12.3.0
 -->
 
 Enable experimental WebAssembly module support.
+
+### `--experimental-websocket`
+
+<!-- YAML
+added: REPLACEME
+-->
+
+Enable experimental [`WebSocket`][] support.
 
 ### `--force-context-aware`
 
@@ -1117,7 +1155,7 @@ Silence deprecation warnings.
 added: v18.0.0
 -->
 
-Disable experimental support for the [Fetch API][].
+Disable exposition of [Fetch API][] on the global scope.
 
 ### `--no-experimental-global-customevent`
 
@@ -2235,6 +2273,7 @@ Node.js options that are allowed are:
 * `--enable-network-family-autoselection`
 * `--enable-source-maps`
 * `--experimental-abortcontroller`
+* `--experimental-default-type`
 * `--experimental-import-meta-resolve`
 * `--experimental-json-modules`
 * `--experimental-loader`
@@ -2248,6 +2287,7 @@ Node.js options that are allowed are:
 * `--experimental-vm-modules`
 * `--experimental-wasi-unstable-preview1`
 * `--experimental-wasm-modules`
+* `--experimental-websocket`
 * `--force-context-aware`
 * `--force-fips`
 * `--force-node-api-uncaught-exceptions-policy`
@@ -2715,6 +2755,7 @@ done
 [`NODE_OPTIONS`]: #node_optionsoptions
 [`NO_COLOR`]: https://no-color.org
 [`SlowBuffer`]: buffer.md#class-slowbuffer
+[`WebSocket`]: https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
 [`YoungGenerationSizeFromSemiSpaceSize`]: https://chromium.googlesource.com/v8/v8.git/+/refs/tags/10.3.129/src/heap/heap.cc#328
 [`dns.lookup()`]: dns.md#dnslookuphostname-options-callback
 [`dns.setDefaultResultOrder()`]: dns.md#dnssetdefaultresultorderorder

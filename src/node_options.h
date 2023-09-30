@@ -111,12 +111,14 @@ class EnvironmentOptions : public Options {
   std::string dns_result_order;
   bool enable_source_maps = false;
   bool experimental_fetch = true;
+  bool experimental_websocket = false;
   bool experimental_global_customevent = true;
   bool experimental_global_web_crypto = true;
   bool experimental_https_modules = false;
   bool experimental_wasm_modules = false;
   bool experimental_import_meta_resolve = false;
-  std::string module_type;
+  std::string input_type;  // Value of --input-type
+  std::string type;        // Value of --experimental-default-type
   std::string experimental_policy;
   std::string experimental_policy_integrity;
   bool has_policy_integrity_string = false;

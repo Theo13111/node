@@ -36,7 +36,7 @@
 
     # Reset this number to 0 on major V8 upgrades.
     # Increment by one for each non-official patch applied to deps/v8.
-    'v8_embedder_string': '-node.17',
+    'v8_embedder_string': '-node.19',
 
     ##### V8 defaults for Node.js #####
 
@@ -230,7 +230,7 @@
             ],
           },],
           ['OS == "android"', {
-            'cflags': [ '-fPIC' ],
+            'cflags': [ '-fPIC', '-I<(android_ndk_path)/sources/android/cpufeatures' ],
             'ldflags': [ '-fPIC' ]
           }],
         ],
