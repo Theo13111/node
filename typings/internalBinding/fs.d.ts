@@ -1,3 +1,5 @@
+import { ConstantsBinding } from './constants';
+
 declare namespace InternalFSBinding {
   class FSReqCallback<ResultType = unknown> {
     constructor(bigint?: boolean);
@@ -84,6 +86,7 @@ declare namespace InternalFSBinding {
   function fdatasync(fd: number, req: FSReqCallback): void;
   function fdatasync(fd: number, req: undefined, ctx: FSSyncContext): void;
   function fdatasync(fd: number, usePromises: typeof kUsePromises): Promise<void>;
+  function fdatasync(fd: number): void;
 
   function fstat(fd: number, useBigint: boolean, req: FSReqCallback<Float64Array | BigUint64Array>): void;
   function fstat(fd: number, useBigint: true, req: FSReqCallback<BigUint64Array>): void;
@@ -218,6 +221,8 @@ declare namespace InternalFSBinding {
   function writeString(fd: number, value: string, pos: unknown, encoding: unknown, req: FSReqCallback<number>): void;
   function writeString(fd: number, value: string, pos: unknown, encoding: unknown, req: undefined, ctx: FSSyncContext): number;
   function writeString(fd: number, value: string, pos: unknown, encoding: unknown, usePromises: typeof kUsePromises): Promise<number>;
+
+  function getFormatOfExtensionlessFile(url: string): ConstantsBinding['fs'];
 }
 
 export interface FsBinding {
@@ -269,4 +274,6 @@ export interface FsBinding {
   writeBuffer: typeof InternalFSBinding.writeBuffer;
   writeBuffers: typeof InternalFSBinding.writeBuffers;
   writeString: typeof InternalFSBinding.writeString;
+
+  getFormatOfExtensionlessFile: typeof InternalFSBinding.getFormatOfExtensionlessFile;
 }
