@@ -18,7 +18,7 @@ const hacks = [
   'eslint-plugin-jsdoc',
   'eslint-plugin-markdown',
   '@babel/eslint-parser',
-  '@babel/plugin-syntax-import-assertions',
+  '@babel/plugin-syntax-import-attributes',
 ];
 Module._findPath = (request, paths, isMain) => {
   const r = ModuleFindPath(request, paths, isMain);
@@ -44,7 +44,7 @@ module.exports = {
   parserOptions: {
     babelOptions: {
       plugins: [
-        Module._findPath('@babel/plugin-syntax-import-assertions'),
+        Module._findPath('@babel/plugin-syntax-import-attributes'),
       ],
     },
     requireConfigFile: false,
@@ -256,7 +256,6 @@ module.exports = {
         message: 'Use `globalThis.crypto`.',
       },
     ],
-    'no-return-await': 'error',
     'no-self-compare': 'error',
     'no-tabs': 'error',
     'no-template-curly-in-string': 'error',

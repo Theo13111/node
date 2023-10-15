@@ -9,6 +9,8 @@
 </tr>
 <tr>
 <td>
+<a href="#18.18.2">18.18.2</a><br/>
+<a href="#18.18.1">18.18.1</a><br/>
 <a href="#18.18.0">18.18.0</a><br/>
 <a href="#18.17.1">18.17.1</a><br/>
 <a href="#18.17.0">18.17.0</a><br/>
@@ -61,6 +63,59 @@
   * [0.10.x](CHANGELOG_V010.md)
   * [io.js](CHANGELOG_IOJS.md)
   * [Archive](CHANGELOG_ARCHIVE.md)
+
+<a id="18.18.2"></a>
+
+## 2023-10-13, Version 18.18.2 'Hydrogen' (LTS), @RafaelGSS
+
+This is a security release.
+
+### Notable Changes
+
+The following CVEs are fixed in this release:
+
+* [CVE-2023-44487](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-44487): `nghttp2` Security Release (High)
+* [CVE-2023-45143](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-45143): `undici` Security Release (High)
+* [CVE-2023-38552](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-38552):  Integrity checks according to policies can be circumvented (Medium)
+* [CVE-2023-39333](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-39333): Code injection via WebAssembly export names (Low)
+
+More detailed information on each of the vulnerabilities can be found in [October 2023 Security Releases](https://nodejs.org/en/blog/vulnerability/october-2023-security-releases/) blog post.
+
+### Commits
+
+* \[[`55028468db`](https://github.com/nodejs/node/commit/55028468db)] - **deps**: update undici to v5.26.3 (Matteo Collina) [#50153](https://github.com/nodejs/node/pull/50153)
+* \[[`a792bbc515`](https://github.com/nodejs/node/commit/a792bbc515)] - **deps**: update nghttp2 to 1.57.0 (James M Snell) [#50121](https://github.com/nodejs/node/pull/50121)
+* \[[`f6444defa4`](https://github.com/nodejs/node/commit/f6444defa4)] - **deps**: update nghttp2 to 1.56.0 (Node.js GitHub Bot) [#49582](https://github.com/nodejs/node/pull/49582)
+* \[[`7e9b08dfd4`](https://github.com/nodejs/node/commit/7e9b08dfd4)] - **deps**: update nghttp2 to 1.55.1 (Node.js GitHub Bot) [#48790](https://github.com/nodejs/node/pull/48790)
+* \[[`85672c153f`](https://github.com/nodejs/node/commit/85672c153f)] - **deps**: update nghttp2 to 1.55.0 (Node.js GitHub Bot) [#48746](https://github.com/nodejs/node/pull/48746)
+* \[[`300a902422`](https://github.com/nodejs/node/commit/300a902422)] - **deps**: update nghttp2 to 1.53.0 (Node.js GitHub Bot) [#47997](https://github.com/nodejs/node/pull/47997)
+* \[[`7d83ed0bf6`](https://github.com/nodejs/node/commit/7d83ed0bf6)] - _**Revert**_ "**deps**: update nghttp2 to 1.55.0" (Richard Lau) [#50151](https://github.com/nodejs/node/pull/50151)
+* \[[`1193ca5fdb`](https://github.com/nodejs/node/commit/1193ca5fdb)] - **lib**: let deps require `node` prefixed modules (Matthew Aitken) [#50047](https://github.com/nodejs/node/pull/50047)
+* \[[`eaf9083cf1`](https://github.com/nodejs/node/commit/eaf9083cf1)] - **module**: fix code injection through export names (Tobias Nießen) [nodejs-private/node-private#461](https://github.com/nodejs-private/node-private/pull/461)
+* \[[`1c538938cc`](https://github.com/nodejs/node/commit/1c538938cc)] - **policy**: use tamper-proof integrity check function (Tobias Nießen) [nodejs-private/node-private#462](https://github.com/nodejs-private/node-private/pull/462)
+
+<a id="18.18.1"></a>
+
+## 2023-10-10, Version 18.18.1 'Hydrogen' (LTS), @richardlau
+
+### Notable Changes
+
+This release addresses some regressions that appeared in Node.js 18.18.0:
+
+* (Windows) FS can not handle certain characters in file name [#48673](https://github.com/nodejs/node/issues/48673)
+* 18 and 20 node images give error - Text file busy (after re-build images) [nodejs/docker-node#1968](https://github.com/nodejs/docker-node/issues/1968)
+* libuv update in 18.18.0 breaks webpack's thread-loader [#49911](https://github.com/nodejs/node/issues/49911)
+
+The libuv 1.45.0 and 1.46.0 updates that were released in Node.js 18.18.0 have been temporarily reverted.
+
+### Commits
+
+* \[[`3e3a75cc46`](https://github.com/nodejs/node/commit/3e3a75cc46)] - _**Revert**_ "**build**: sync libuv header change" (Richard Lau) [#50036](https://github.com/nodejs/node/pull/50036)
+* \[[`14ece2c479`](https://github.com/nodejs/node/commit/14ece2c479)] - _**Revert**_ "**deps**: upgrade to libuv 1.45.0" (Richard Lau) [#50036](https://github.com/nodejs/node/pull/50036)
+* \[[`022352acbe`](https://github.com/nodejs/node/commit/022352acbe)] - _**Revert**_ "**deps**: upgrade to libuv 1.46.0" (Richard Lau) [#50036](https://github.com/nodejs/node/pull/50036)
+* \[[`d9f138189c`](https://github.com/nodejs/node/commit/d9f138189c)] - _**Revert**_ "**deps**: add missing thread-common.c in uv.gyp" (Richard Lau) [#50036](https://github.com/nodejs/node/pull/50036)
+* \[[`7a3e1ffbb8`](https://github.com/nodejs/node/commit/7a3e1ffbb8)] - **fs**: make sure to write entire buffer (Robert Nagy) [#49211](https://github.com/nodejs/node/pull/49211)
+* \[[`04cba95a67`](https://github.com/nodejs/node/commit/04cba95a67)] - **test**: add `tmpdir.resolve()` (Livia Medeiros) [#49079](https://github.com/nodejs/node/pull/49079)
 
 <a id="18.18.0"></a>
 

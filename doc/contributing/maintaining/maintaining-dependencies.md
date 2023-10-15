@@ -15,23 +15,23 @@ This a list of all the dependencies:
 * [c-ares 1.19.0][]
 * [cjs-module-lexer 1.2.2][]
 * [corepack][]
-* [googletest e47544a][]
+* [googletest 2dd1c13][]
 * [histogram 0.11.8][]
 * [icu-small 73.2][]
 * [libuv 1.46.0][]
 * [llhttp 9.1.2][]
 * [minimatch 9.0.3][]
-* [nghttp2 1.56.0][]
+* [nghttp2 1.57.0][]
 * [nghttp3 0.7.0][]
 * [ngtcp2 0.8.1][]
 * [npm 9.6.7][]
 * [openssl 3.0.8][]
 * [postject 1.0.0-alpha.6][]
-* [simdutf 3.2.17][]
-* [undici 5.25.2][]
+* [simdutf 3.2.18][]
+* [undici 5.26.3][]
 * [uvwasi 0.0.19][]
-* [V8 11.3.244.8][]
-* [zlib 1.2.13.1-motley-f5fd0ad][]
+* [V8 11.8.172.12][]
+* [zlib 1.2.13.1-motley-fef5869][]
 
 Any code which meets one or more of these conditions should
 be managed as a dependency:
@@ -189,7 +189,7 @@ In practical terms, Corepack will let you use Yarn and pnpm without having to
 install them - just like what currently happens with npm, which is shipped
 by Node.js by default.
 
-### googletest e47544a
+### googletest 2dd1c13
 
 The [googletest](https://github.com/google/googletest) dependency is Google’s
 C++ testing and mocking framework.
@@ -223,7 +223,7 @@ See [maintaining-http][] for more informations.
 The [minimatch](https://github.com/isaacs/minimatch) dependency is a
 minimal matching utility.
 
-### nghttp2 1.56.0
+### nghttp2 1.57.0
 
 The [nghttp2](https://github.com/nghttp2/nghttp2) dependency is a C library
 implementing HTTP/2 protocol.
@@ -286,12 +286,12 @@ See [maintaining-openssl][] for more informations.
 The [postject](https://github.com/nodejs/postject) dependency is used for the
 [Single Executable strategic initiative](https://github.com/nodejs/single-executable).
 
-### simdutf 3.2.17
+### simdutf 3.2.18
 
 The [simdutf](https://github.com/simdutf/simdutf) dependency is
 a C++ library for fast UTF-8 decoding and encoding.
 
-### undici 5.25.2
+### undici 5.26.3
 
 The [undici](https://github.com/nodejs/undici) dependency is an HTTP/1.1 client,
 written from scratch for Node.js..
@@ -305,13 +305,13 @@ implement WASI calls.
 Under the hood, uvwasi leverages libuv where possible for maximum portability.
 See [maintaining-web-assembly][] for more informations.
 
-### V8 11.3.244.8
+### V8 11.8.172.12
 
 [V8](https://chromium.googlesource.com/v8/v8.git/) is Google's open source
 high-performance JavaScript and WebAssembly engine, written in C++.
 See [maintaining-V8][] for more informations.
 
-### zlib 1.2.13.1-motley-f5fd0ad
+### zlib 1.2.13.1-motley-fef5869
 
 The [zlib](https://chromium.googlesource.com/chromium/src/+/refs/heads/main/third_party/zlib)
 dependency lossless data-compression library,
@@ -326,7 +326,7 @@ performance improvements not currently available in standard zlib.
 [cjs-module-lexer 1.2.2]: #cjs-module-lexer-122
 [corepack]: #corepack
 [dependency-update-action]: ../../../.github/workflows/tools.yml
-[googletest e47544a]: #googletest-e47544a
+[googletest 2dd1c13]: #googletest-2dd1c13
 [histogram 0.11.8]: #histogram-0118
 [icu-small 73.2]: #icu-small-732
 [libuv 1.46.0]: #libuv-1460
@@ -338,15 +338,15 @@ performance improvements not currently available in standard zlib.
 [maintaining-openssl]: ./maintaining-openssl.md
 [maintaining-web-assembly]: ./maintaining-web-assembly.md
 [minimatch 9.0.3]: #minimatch-903
-[nghttp2 1.56.0]: #nghttp2-1560
+[nghttp2 1.57.0]: #nghttp2-1570
 [nghttp3 0.7.0]: #nghttp3-070
 [ngtcp2 0.8.1]: #ngtcp2-081
 [npm 9.6.7]: #npm-967
 [openssl 3.0.8]: #openssl-308
 [postject 1.0.0-alpha.6]: #postject-100-alpha6
-[simdutf 3.2.17]: #simdutf-3217
-[undici 5.25.2]: #undici-5252
+[simdutf 3.2.18]: #simdutf-3218
+[undici 5.26.3]: #undici-5263
 [update-openssl-action]: ../../../.github/workflows/update-openssl.yml
 [uvwasi 0.0.19]: #uvwasi-0019
-[v8 11.3.244.8]: #v8-1132448
-[zlib 1.2.13.1-motley-f5fd0ad]: #zlib-12131-motley-f5fd0ad
+[v8 11.8.172.12]: #v8-11817212
+[zlib 1.2.13.1-motley-fef5869]: #zlib-12131-motley-fef5869
