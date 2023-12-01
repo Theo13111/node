@@ -165,15 +165,13 @@ For information about the governance of the Node.js project, see
 * [aduh95](https://github.com/aduh95) -
   **Antoine du Hamel** <<duhamelantoine1995@gmail.com>> (he/him)
 * [anonrig](https://github.com/anonrig) -
-  **Yagiz Nizipli** <<yagiz@nizipli.com>> (he/him)
+  **Yagiz Nizipli** <<yagiz.nizipli@sentry.io>> (he/him)
 * [apapirovski](https://github.com/apapirovski) -
   **Anatoli Papirovski** <<apapirovski@mac.com>> (he/him)
 * [benjamingr](https://github.com/benjamingr) -
   **Benjamin Gruenbaum** <<benjamingr@gmail.com>>
 * [BridgeAR](https://github.com/BridgeAR) -
   **Ruben Bridgewater** <<ruben@bridgewater.de>> (he/him)
-* [cjihrig](https://github.com/cjihrig) -
-  **Colin Ihrig** <<cjihrig@gmail.com>> (he/him)
 * [GeoffreyBooth](https://github.com/geoffreybooth) -
   **Geoffrey Booth** <<webadmin@geoffreybooth.com>> (he/him)
 * [gireeshpunathil](https://github.com/gireeshpunathil) -
@@ -204,8 +202,6 @@ For information about the governance of the Node.js project, see
   **Michaël Zasso** <<targos@protonmail.com>> (he/him)
 * [tniessen](https://github.com/tniessen) -
   **Tobias Nießen** <<tniessen@tnie.de>> (he/him)
-* [Trott](https://github.com/Trott) -
-  **Rich Trott** <<rtrott@gmail.com>> (he/him)
 
 #### TSC regular members
 
@@ -215,6 +211,8 @@ For information about the governance of the Node.js project, see
   **Ben Noordhuis** <<info@bnoordhuis.nl>>
 * [ChALkeR](https://github.com/ChALkeR) -
   **Сковорода Никита Андреевич** <<chalkerx@gmail.com>> (he/him)
+* [cjihrig](https://github.com/cjihrig) -
+  **Colin Ihrig** <<cjihrig@gmail.com>> (he/him)
 * [codebytere](https://github.com/codebytere) -
   **Shelley Vohr** <<shelley.vohr@gmail.com>> (she/her)
 * [danbev](https://github.com/danbev) -
@@ -233,6 +231,8 @@ For information about the governance of the Node.js project, see
   **Rod Vagg** <<r@va.gg>>
 * [TimothyGu](https://github.com/TimothyGu) -
   **Tiancheng "Timothy" Gu** <<timothygu99@gmail.com>> (he/him)
+* [Trott](https://github.com/Trott) -
+  **Rich Trott** <<rtrott@gmail.com>> (he/him)
 
 <details>
 
@@ -288,7 +288,7 @@ For information about the governance of the Node.js project, see
 * [aduh95](https://github.com/aduh95) -
   **Antoine du Hamel** <<duhamelantoine1995@gmail.com>> (he/him)
 * [anonrig](https://github.com/anonrig) -
-  **Yagiz Nizipli** <<yagiz@nizipli.com>> (he/him)
+  **Yagiz Nizipli** <<yagiz.nizipli@sentry.io>> (he/him)
 * [antsmartian](https://github.com/antsmartian) -
   **Anto Aravinth** <<anto.aravinth.cse@gmail.com>> (he/him)
 * [apapirovski](https://github.com/apapirovski) -
@@ -341,12 +341,14 @@ For information about the governance of the Node.js project, see
   **Adrian Estrada** <<edsadr@gmail.com>> (he/him)
 * [erickwendel](https://github.com/erickwendel) -
   **Erick Wendel** <<erick.workspace@gmail.com>> (he/him)
+* [Ethan-Arrowood](https://github.com/Ethan-Arrowood) -
+  **Ethan Arrowood** <<ethan@arrowood.dev>> (he/him)
 * [fhinkel](https://github.com/fhinkel) -
   **Franziska Hinkelmann** <<franziska.hinkelmann@gmail.com>> (she/her)
 * [F3n67u](https://github.com/F3n67u) -
   **Feng Yu** <<F3n67u@outlook.com>> (he/him)
 * [Flarna](https://github.com/Flarna) -
-  **Gerhard Stöbich** <<deb2001-github@yahoo.de>>  (he/they)
+  **Gerhard Stöbich** <<deb2001-github@yahoo.de>> (he/they)
 * [gabrielschulhof](https://github.com/gabrielschulhof) -
   **Gabriel Schulhof** <<gabrielschulhof@gmail.com>>
 * [gengjiawen](https://github.com/gengjiawen) -
@@ -357,14 +359,14 @@ For information about the governance of the Node.js project, see
   **Gireesh Punathil** <<gpunathi@in.ibm.com>> (he/him)
 * [guybedford](https://github.com/guybedford) -
   **Guy Bedford** <<guybedford@gmail.com>> (he/him)
+* [H4ad](https://github.com/H4ad) -
+  **Vinícius Lourenço Claro Cardoso** <<contact@viniciusl.com.br>> (he/him)
 * [HarshithaKP](https://github.com/HarshithaKP) -
   **Harshitha K P** <<harshitha014@gmail.com>> (she/her)
 * [himself65](https://github.com/himself65) -
   **Zeyu "Alex" Yang** <<himself65@outlook.com>> (he/him)
 * [iansu](https://github.com/iansu) -
   **Ian Sutherland** <<ian@iansutherland.ca>>
-* [JacksonTian](https://github.com/JacksonTian) -
-  **Jackson Tian** <<shyvo1987@gmail.com>>
 * [JakobJingleheimer](https://github.com/JakobJingleheimer) -
   **Jacob Smith** <<jacob@frende.me>> (he/him)
 * [jasnell](https://github.com/jasnell) -
@@ -415,6 +417,8 @@ For information about the governance of the Node.js project, see
   **Alba Mendez** <<me@alba.sh>> (she/her)
 * [MoLow](https://github.com/MoLow) -
   **Moshe Atlow** <<moshe@atlow.co.il>> (he/him)
+* [MrJithil](https://github.com/MrJithil) -
+  **Jithil P Ponnan** <<jithil@outlook.com>> (he/him)
 * [mscdex](https://github.com/mscdex) -
   **Brian White** <<mscdex@mscdex.net>>
 * [MylesBorins](https://github.com/MylesBorins) -
@@ -563,6 +567,8 @@ For information about the governance of the Node.js project, see
   **Isaac Z. Schlueter** <<i@izs.me>>
 * [italoacasas](https://github.com/italoacasas) -
   **Italo A. Casas** <<me@italoacasas.com>> (he/him)
+* [JacksonTian](https://github.com/JacksonTian) -
+  **Jackson Tian** <<shyvo1987@gmail.com>>
 * [jasongin](https://github.com/jasongin) -
   **Jason Ginchereau** <<jasongin@microsoft.com>>
 * [jbergstroem](https://github.com/jbergstroem) -
@@ -709,6 +715,8 @@ maintaining the Node.js project.
   **Qingyu Deng** <<i@ayase-lab.com>>
 * [bmuenzenmeyer](https://github.com/bmuenzenmeyer) -
   **Brian Muenzenmeyer** <<brian.muenzenmeyer@gmail.com>> (he/him)
+* [CanadaHonk](https://github.com/CanadaHonk) -
+  **Oliver Medhurst** <<honk@goose.icu>> (they/them)
 * [daeyeon](https://github.com/daeyeon) -
   **Daeyeon Jeong** <<daeyeon.dev@gmail.com>> (he/him)
 * [F3n67u](https://github.com/F3n67u) -

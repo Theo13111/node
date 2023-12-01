@@ -96,6 +96,16 @@ describe('require(\'node:test\').run', { concurrency: true }, () => {
       assert.match(stringResults[1], /tests 1/);
       assert.match(stringResults[1], /pass 1/);
     });
+
+    it('spec', async () => {
+      const result = await run({
+        files: [join(testFixtures, 'default-behavior/test/random.cjs')]
+      }).compose(spec).toArray();
+      const stringResults = result.map((bfr) => bfr.toString());
+      assert.match(stringResults[0], /this should pass/);
+      assert.match(stringResults[1], /tests 1/);
+      assert.match(stringResults[1], /pass 1/);
+    });
   });
 
   it('should be piped with tap', async () => {
@@ -166,6 +176,17 @@ describe('require(\'node:test\').run', { concurrency: true }, () => {
   });
 
   describe('AbortSignal', () => {
+    it('should accept a signal', async () => {
+      const stream = run({ signal: AbortSignal.timeout(50), files: [
+        fixtures.path('test-runner', 'never_ending_sync.js'),
+        fixtures.path('test-runner', 'never_ending_async.js'),
+      ] });
+      stream.on('test:fail', common.mustCall(2));
+      stream.on('test:pass', common.mustNotCall());
+      // eslint-disable-next-line no-unused-vars
+      for await (const _ of stream);
+    });
+
     it('should stop watch mode when abortSignal aborts', async () => {
       const controller = new AbortController();
       const result = await run({

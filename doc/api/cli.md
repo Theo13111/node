@@ -166,7 +166,7 @@ The valid arguments for the `--allow-fs-read` flag are:
   Example `--allow-fs-read=/folder1/ --allow-fs-read=/folder1/`
 
 Paths delimited by comma (`,`) are no longer allowed.
-When passing a single flag with a comma a warning will be diplayed
+When passing a single flag with a comma a warning will be displayed.
 
 Examples can be found in the [File System Permissions][] documentation.
 
@@ -220,7 +220,7 @@ The valid arguments for the `--allow-fs-write` flag are:
   Example `--allow-fs-read=/folder1/ --allow-fs-read=/folder1/`
 
 Paths delimited by comma (`,`) are no longer allowed.
-When passing a single flag with a comma a warning will be diplayed
+When passing a single flag with a comma a warning will be displayed.
 
 Examples can be found in the [File System Permissions][] documentation.
 
@@ -443,6 +443,57 @@ Affects the default output directory of:
 * [`--heap-prof-dir`][]
 * [`--redirect-warnings`][]
 
+### `--disable-warning=code-or-type`
+
+> Stability: 1.1 - Active development
+
+<!-- YAML
+added: v21.3.0
+-->
+
+Disable specific process warnings by `code` or `type`.
+
+Warnings emitted from [`process.emitWarning()`][emit_warning] may contain a
+`code` and a `type`. This option will not-emit warnings that have a matching
+`code` or `type`.
+
+List of [deprecation warnings][].
+
+The Node.js core warning types are: `DeprecationWarning` and
+`ExperimentalWarning`
+
+For example, the following script will not emit
+[DEP0025 `require('node:sys')`][DEP0025 warning] when executed with
+`node --disable-warning=DEP0025`:
+
+```mjs
+import sys from 'node:sys';
+```
+
+```cjs
+const sys = require('node:sys');
+```
+
+For example, the following script will emit the
+[DEP0025 `require('node:sys')`][DEP0025 warning], but not any Experimental
+Warnings (such as
+[ExperimentalWarning: `vm.measureMemory` is an experimental feature][]
+in <=v21) when executed with `node --disable-warning=ExperimentalWarnings`:
+
+```mjs
+import sys from 'node:sys';
+import vm from 'node:vm';
+
+vm.measureMemory();
+```
+
+```cjs
+const sys = require('node:sys');
+const vm = require('node:vm');
+
+vm.measureMemory();
+```
+
 ### `--disable-proto=mode`
 
 <!-- YAML
@@ -594,7 +645,9 @@ and `"` are usable.
 
 <!-- YAML
 added:
-  - REPLACEME
+  - v21.0.0
+  - v20.10.0
+  - v18.19.0
 -->
 
 > Stability: 1.0 - Early development
@@ -620,6 +673,33 @@ files with no extension will be treated as WebAssembly if they begin with the
 WebAssembly magic number (`\0asm`); otherwise they will be treated as ES module
 JavaScript.
 
+### `--experimental-detect-module`
+
+<!-- YAML
+added:
+  - v21.1.0
+  - v20.10.0
+-->
+
+> Stability: 1.0 - Early development
+
+Node.js will inspect the source code of ambiguous input to determine whether it
+contains ES module syntax; if such syntax is detected, the input will be treated
+as an ES module.
+
+Ambiguous input is defined as:
+
+* Files with a `.js` extension or no extension; and either no controlling
+  `package.json` file or one that lacks a `type` field; and
+  `--experimental-default-type` is not specified.
+* String input (`--eval` or STDIN) when neither `--input-type` nor
+  `--experimental-default-type` are specified.
+
+ES module syntax is defined as syntax that would throw when evaluated as
+CommonJS. This includes `import` and `export` statements and `import.meta`
+references. It does _not_ include `import()` expressions, which are valid in
+CommonJS.
+
 ### `--experimental-import-meta-resolve`
 
 <!-- YAML
@@ -627,7 +707,9 @@ added:
   - v13.9.0
   - v12.16.2
 changes:
-  - version: v20.6.0
+  - version:
+    - v20.6.0
+    - v18.19.0
     pr-url: https://github.com/nodejs/node/pull/49028
     description: synchronous import.meta.resolve made available by default, with
                  the flag retained for enabling the experimental second argument
@@ -774,7 +856,9 @@ Enable experimental WebAssembly module support.
 ### `--experimental-websocket`
 
 <!-- YAML
-added: REPLACEME
+added:
+  - v21.0.0
+  - v20.10.0
 -->
 
 Enable experimental [`WebSocket`][] support.
@@ -981,7 +1065,9 @@ added:
 
 > Stability: 1 - Experimental
 
-Preload the specified module at startup.
+Preload the specified module at startup. If the flag is provided several times,
+each module will be executed sequentially in the order they appear, starting
+with the ones provided in [`NODE_OPTIONS`][].
 
 Follows [ECMAScript module][] resolution rules.
 Use [`--require`][] to load a [CommonJS module][].
@@ -1167,6 +1253,16 @@ added: v19.0.0
 -->
 
 Disable exposition of [CustomEvent Web API][] on the global scope.
+
+### `--no-experimental-global-navigator`
+
+<!-- YAML
+added: v21.2.0
+-->
+
+> Stability: 1 - Experimental
+
+Disable exposition of [Navigator API][] on the global scope.
 
 ### `--no-experimental-global-webcrypto`
 
@@ -1657,7 +1753,10 @@ for more details.
 ### `--test-concurrency`
 
 <!-- YAML
-added: REPLACEME
+added:
+  - v21.0.0
+  - v20.10.0
+  - v18.19.0
 -->
 
 The maximum number of test files that the test runner CLI will execute
@@ -1725,7 +1824,9 @@ The destination for the corresponding test reporter. See the documentation on
 ### `--test-shard`
 
 <!-- YAML
-added: v20.5.0
+added:
+  - v20.5.0
+  - v18.19.0
 -->
 
 Test suite shard to execute in a format of `<index>/<total>`, where
@@ -1742,6 +1843,15 @@ node --test --test-shard=1/3
 node --test --test-shard=2/3
 node --test --test-shard=3/3
 ```
+
+### `--test-timeout`
+
+<!-- YAML
+added: v21.2.0
+-->
+
+A number of milliseconds the test execution will fail after. If unspecified,
+subtests inherit this value from their parent. The default value is `Infinity`.
 
 ### `--throw-deprecation`
 
@@ -2280,12 +2390,14 @@ Node.js options that are allowed are:
 * `--conditions`, `-C`
 * `--diagnostic-dir`
 * `--disable-proto`
+* `--disable-warning`
 * `--dns-result-order`
 * `--enable-fips`
 * `--enable-network-family-autoselection`
 * `--enable-source-maps`
 * `--experimental-abortcontroller`
 * `--experimental-default-type`
+* `--experimental-detect-module`
 * `--experimental-import-meta-resolve`
 * `--experimental-json-modules`
 * `--experimental-loader`
@@ -2321,6 +2433,7 @@ Node.js options that are allowed are:
 * `--no-deprecation`
 * `--no-experimental-fetch`
 * `--no-experimental-global-customevent`
+* `--no-experimental-global-navigator`
 * `--no-experimental-global-webcrypto`
 * `--no-experimental-repl-await`
 * `--no-extra-info-on-fatal-exception`
@@ -2730,12 +2843,15 @@ done
 [CommonJS]: modules.md
 [CommonJS module]: modules.md
 [CustomEvent Web API]: https://dom.spec.whatwg.org/#customevent
+[DEP0025 warning]: deprecations.md#dep0025-requirenodesys
 [ECMAScript module]: esm.md#modules-ecmascript-modules
+[ExperimentalWarning: `vm.measureMemory` is an experimental feature]: vm.md#vmmeasurememoryoptions
 [Fetch API]: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 [File System Permissions]: permissions.md#file-system-permissions
 [Module customization hooks]: module.md#customization-hooks
 [Module customization hooks: enabling]: module.md#enabling
 [Modules loaders]: packages.md#modules-loaders
+[Navigator API]: globals.md#navigator
 [Node.js issue tracker]: https://github.com/nodejs/node/issues
 [OSSL_PROVIDER-legacy]: https://www.openssl.org/docs/man3.0/man7/OSSL_PROVIDER-legacy.html
 [Permission Model]: permissions.md#permission-model
@@ -2785,6 +2901,7 @@ done
 [context-aware]: addons.md#context-aware-addons
 [debugger]: debugger.md
 [debugging security implications]: https://nodejs.org/en/docs/guides/debugging-getting-started/#security-implications
+[deprecation warnings]: deprecations.md#list-of-deprecated-apis
 [emit_warning]: process.md#processemitwarningwarning-options
 [environment_variables]: #environment-variables
 [filtering tests by name]: test.md#filtering-tests-by-name

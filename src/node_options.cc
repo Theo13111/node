@@ -347,6 +347,11 @@ EnvironmentOptionsParser::EnvironmentOptionsParser() {
             &EnvironmentOptions::conditions,
             kAllowedInEnvvar);
   AddAlias("-C", "--conditions");
+  AddOption("--experimental-detect-module",
+            "when ambiguous modules fail to evaluate because they contain "
+            "ES module syntax, try again to evaluate them as ES modules",
+            &EnvironmentOptions::detect_module,
+            kAllowedInEnvvar);
   AddOption("--diagnostic-dir",
             "set dir for all output files"
             " (default: current working directory)",
@@ -384,6 +389,11 @@ EnvironmentOptionsParser::EnvironmentOptionsParser() {
   AddOption("--experimental-global-customevent",
             "expose experimental CustomEvent on the global scope",
             &EnvironmentOptions::experimental_global_customevent,
+            kAllowedInEnvvar,
+            true);
+  AddOption("--experimental-global-navigator",
+            "expose experimental Navigator API on the global scope",
+            &EnvironmentOptions::experimental_global_navigator,
             kAllowedInEnvvar,
             true);
   AddOption("--experimental-global-webcrypto",
@@ -517,6 +527,10 @@ EnvironmentOptionsParser::EnvironmentOptionsParser() {
             &EnvironmentOptions::warnings,
             kAllowedInEnvvar,
             true);
+  AddOption("--disable-warning",
+            "silence specific process warnings",
+            &EnvironmentOptions::disable_warnings,
+            kAllowedInEnvvar);
   AddOption("--force-context-aware",
             "disable loading non-context-aware addons",
             &EnvironmentOptions::force_context_aware,
@@ -598,6 +612,9 @@ EnvironmentOptionsParser::EnvironmentOptionsParser() {
   AddOption("--test-concurrency",
             "specify test runner concurrency",
             &EnvironmentOptions::test_runner_concurrency);
+  AddOption("--test-timeout",
+            "specify test runner timeout",
+            &EnvironmentOptions::test_runner_timeout);
   AddOption("--experimental-test-coverage",
             "enable code coverage in the test runner",
             &EnvironmentOptions::test_runner_coverage);

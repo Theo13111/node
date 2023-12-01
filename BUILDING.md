@@ -110,6 +110,7 @@ platforms. This is true regardless of entries in the table below.
 | GNU/Linux        | armv6            | kernel >= 4.14, glibc >= 2.24     | Experimental                                    | Downgraded as of Node.js 12          |
 | GNU/Linux        | ppc64le >=power8 | kernel >= 4.18[^1], glibc >= 2.28 | Tier 2                                          | e.g. Ubuntu 20.04, RHEL 8            |
 | GNU/Linux        | s390x            | kernel >= 4.18[^1], glibc >= 2.28 | Tier 2                                          | e.g. RHEL 8                          |
+| GNU/Linux        | loong64          | kernel >= 5.19, glibc >= 2.36     | Experimental                                    |                                      |
 | Windows          | x64, x86 (WoW64) | >= Windows 10/Server 2016         | Tier 1                                          | [^2],[^3]                            |
 | Windows          | x86 (native)     | >= Windows 10/Server 2016         | Tier 1 (running) / Experimental (compiling)[^4] |                                      |
 | Windows          | x64, x86         | Windows 8.1/Server 2012           | Experimental                                    |                                      |
@@ -229,7 +230,7 @@ The Node.js project supports Python >= 3 for building and testing.
 
 * `gcc` and `g++` >= 10.1 or newer
 * GNU Make 3.81 or newer
-* Python >=3.6 <=3.11 (see note above)
+* [A supported version of Python][Python versions]
   * For test coverage, your Python installation must include pip.
 
 Installation via Linux package manager can be achieved with:
@@ -245,7 +246,7 @@ FreeBSD and OpenBSD users may also need to install `libexecinfo`.
 #### macOS prerequisites
 
 * Xcode Command Line Tools >= 13 for macOS
-* Python >=3.6 <=3.11 (see note above)
+* [A supported version of Python][Python versions]
   * For test coverage, your Python installation must include pip.
 
 macOS users can install the `Xcode Command Line Tools` by running
@@ -461,6 +462,12 @@ make docopen
 This will open a file URL to a one-page version of all the browsable HTML
 documents using the default browser.
 
+```bash
+make docclean
+```
+
+This will clean previously built doc.
+
 To test if Node.js was built correctly:
 
 ```bash
@@ -575,7 +582,8 @@ to run it again before invoking `make -j4`.
 
 ##### Option 1: Manual install
 
-* [Python 3.11](https://apps.microsoft.com/store/detail/python-311/9NRWMJP3717K)
+* The current [version of Python][Python versions] from the
+  [Microsoft Store](https://apps.microsoft.com/store/search?publisher=Python+Software+Foundation)
 * The "Desktop development with C++" workload from
   [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/) or
   the "C++ build tools" workload from the
@@ -886,3 +894,5 @@ incompatible with the official Node.js builds (e.g. using a ABI incompatible
 version of a dependency), please reserve and use a custom `NODE_MODULE_VERSION`
 by opening a pull request against the registry available at
 <https://github.com/nodejs/node/blob/HEAD/doc/abi_version_registry.json>.
+
+[Python versions]: https://devguide.python.org/versions/
